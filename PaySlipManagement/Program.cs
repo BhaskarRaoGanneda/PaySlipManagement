@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContextFactory<LoggingDbContext>(options =>
-        options.UseSqlServer("Server=localhost\\SQLEXPRESS01;database=PayslipManagement;TrustServerCertificate=True;Trusted_Connection=true;MultipleActiveResultSets=true"));
+        options.UseSqlServer("Server=(LocalDb)\\LocalDBDemo;database=PayslipManagement;TrustServerCertificate=True;Trusted_Connection=true;MultipleActiveResultSets=true"));
 builder.Services.AddTransient<IExceptionLoggerService, ExceptionLoggerService>();
 
 builder.Services.AddScoped<IEmployeeTypeBALRepo, EmployeeTypeBALRepo>();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using iText.Commons.Actions.Contexts;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using PaySlipManagement.Common.Models;
 using PaySlipManagement.UI.Common;
@@ -99,5 +100,64 @@ namespace PaySlipManagement.UI.Controllers
             }
             return View("Delete");
         }
+        //[HttpPost, ActionName("SubmitRequest")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ApplyLeave(LeaveRequestsViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var employee = await _EmployeeByEmpCodeAsync(model.Emp_Code);
+
+        //        if (employee != null)
+        //        {
+        //            // Ensure valid date range
+        //            if (model.FromDate > model.ToDate)
+        //            {
+        //                ModelState.AddModelError("FromDate", "The From Date must be before the To Date.");
+        //                return View(model);
+        //            }
+
+        //            // Calculate total leave days
+        //            var totalLeave = (model.ToDate - model.FromDate).Value.Days + 1;
+        //            model.LeavesCount = totalLeave;
+
+        //            if (totalLeave <= 0 || totalLeave > employee.LeaveBalance)
+        //            {
+        //                ModelState.AddModelError("TotalLeave", "Invalid leave request amount.");
+        //                return View(model);
+        //            }
+
+        //            // Update leave balance
+        //            employee.LeaveBalance -= totalLeave;
+
+        //            // Save leave request
+        //            var leaveRequest = new LeaveRequest
+        //            {
+        //                Emp_Code = model.Emp_Code,
+        //                LeaveDate = model.FromDate,
+        //                LeaveDays = totalLeave,
+        //                LeaveType = model.LeaveType,
+        //                Reason = model.Reason,
+        //                Status = "Pending"
+        //            };
+
+        //            // Add the leave request to the database
+        //            _dbContext.LeaveRequests.Add(leaveRequest);
+
+        //            // Save changes to the database
+        //            await _dbContext.SaveChangesAsync();
+
+        //            // Return confirmation view
+        //            return View("LeaveConfirmation", model);
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("", "Employee not found.");
+        //        }
+        //    }
+
+        //    // Return to the same view with the current model if validation fails
+        //    return View(model);
+        //}
     }
 }

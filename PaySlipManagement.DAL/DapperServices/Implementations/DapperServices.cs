@@ -14,7 +14,7 @@ namespace PaySlipManagement.DAL.DapperServices.Implementations
 {
     public class DapperServices<T>: IDapperServices<T>
     {
-        private string constring = "Server=LAPTOP-46NPMGS0\\SQLEXPRESS;database=PayslipManagementDB;TrustServerCertificate=True;Trusted_Connection=true;MultipleActiveResultSets=true";
+        private string constring = "Server=(LocalDb)\\LocalDBDemo;database=PayslipManagementDB;TrustServerCertificate=True;Trusted_Connection=true;MultipleActiveResultSets=true";
         private SqlConnection con;
         public DapperServices()
         {
