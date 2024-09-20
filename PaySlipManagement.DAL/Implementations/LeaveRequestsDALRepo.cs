@@ -42,6 +42,20 @@ namespace PaySlipManagement.DAL.Implementations
             }
 
         }
+        public async Task<IEnumerable<LeaveRequests>> GetLeaveRequestsByCodeAsync(string Emp_Code)
+        {
+            try
+            {
+                LeaveRequests lr = new LeaveRequests();
+                lr.Emp_Code = Emp_Code;
+                DapperServices<LeaveRequests> _leaveRequestsRepo = new DapperServices<LeaveRequests>();
+                return await _leaveRequestsRepo.ReadGetByAllNullCodeAsync(lr);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task<bool> CreateLeaveRequests(LeaveRequests _leaveRequests)
         {
             try

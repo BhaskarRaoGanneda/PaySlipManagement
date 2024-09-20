@@ -14,7 +14,6 @@ namespace PaySlipManagement.DAL.DapperServices.Interfaces
         Task<IEnumerable<T>> ReadGetByAllNullCodeAsync(T entity);
         Task<T> ReadGetByCodeAsync(T entity);
         Task<T> ReadGetByAllCodeAsync(T entity);
-        Task<T> ReadAllGetByCodeAsync(T entity);
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);

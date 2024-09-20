@@ -1,6 +1,7 @@
 ﻿using PayslipManagement.Common.Models;
 using System.ComponentModel.DataAnnotations;
 using PaySlipManagement.UI.Utilities;
+using PaySlipManagement.Common.Models;
 
 namespace PaySlipManagement.UI.Models
 {
@@ -21,14 +22,9 @@ namespace PaySlipManagement.UI.Models
     }
     public class EmployeePayPeriodsViewModel
     {
-        public EmployeeDetails Employee { get; set; }
-        public List<string> PayPeriods { get; set; }
-        public LeaveRequestsViewModel LeaveRequest { get; set; }
-        public List<LeavesViewModel> Leaves { get; set; }
-        public EmployeePayPeriodsViewModel()
-        {
-            LeaveRequest = new LeaveRequestsViewModel();
-            Leaves = new List<LeavesViewModel>();
-        }
+        public EmployeeDetails? Employee { get; set; }
+        public List<string>? PayPeriods { get; set; }
+        public LeaveRequestsViewModel? LeaveRequest { get; set; }
+        public LeavesViewModel Leaves { get; set; } = new LeavesViewModel();
     }
 }

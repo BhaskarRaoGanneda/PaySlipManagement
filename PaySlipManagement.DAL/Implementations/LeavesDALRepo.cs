@@ -52,7 +52,7 @@ namespace PaySlipManagement.DAL.Implementations
                 Leaves l = new Leaves();
                 l.Emp_Code = Emp_Code;
                 DapperServices<Leaves> _leavesRepo = new DapperServices<Leaves>();
-                return await _leavesRepo.ReadAllGetByCodeAsync(l);
+                return await _leavesRepo.ReadGetByAllCodeAsync(l);
             }
             catch (Exception ex)
             {

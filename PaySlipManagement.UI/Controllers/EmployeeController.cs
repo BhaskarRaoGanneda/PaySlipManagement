@@ -177,17 +177,22 @@ namespace PaySlipManagement.UI.Controllers
         {
             var empCode = Request.Cookies["empCode"];
             var employee = await _apiServices.GetAsync<EmployeeDetails>($"{_apiSettings.EmployeeEndpoint}/GetEmployeeByEmpCode/{empCode}");
-	        if (employee == null)
+            var leaves = await _apiServices.GetAsync<LeavesViewModel>($"{_apiSettings.LeavesEndpoint}/GetLeavesByEmpCode/{empCode}");
+            if (employee == null)
             {
                 return NotFound("Employee not found.");
             }
-
+            if (leaves == null)
+            {
+                return NotFound("Leaves not found.");
+            }
             var payPeriods = CalculatePayPeriods(employee.JoiningDate, DateTime.Now);
 
             var model = new EmployeePayPeriodsViewModel
             {
                 Employee = employee,
-                PayPeriods = payPeriods
+                PayPeriods = payPeriods,
+                Leaves = leaves
             };
 
             return View(model);

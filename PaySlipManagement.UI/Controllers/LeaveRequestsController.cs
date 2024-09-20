@@ -22,7 +22,13 @@ namespace PaySlipManagement.UI.Controllers
             var leaveRequests = await _apiServices.GetAllAsync<PaySlipManagement.UI.Models.LeaveRequestsViewModel>($"{_apiSettings.LeaveRequestsEndpoint}/GetAllLeaveRequests");
             return View(leaveRequests);
         }
-
+        public async Task<IActionResult> Index1(string Emp_Code)
+        {
+            var empCode = Request.Cookies["empCode"];
+            Emp_Code = empCode;
+            var leaveRequests = await _apiServices.GetAllAsync<PaySlipManagement.UI.Models.LeaveRequestsViewModel>($"{_apiSettings.LeaveRequestsEndpoint}/GetLeaveRequestsByEmpCode/{Emp_Code}");
+            return View(leaveRequests);
+        }
         public async Task<IActionResult> Details(int id)
         {
             var response = await _apiServices.GetAsync<LeaveRequestsViewModel>($"{_apiSettings.LeaveRequestsEndpoint}/GetLeaveRequestsByid/{id}");
@@ -144,7 +150,7 @@ namespace PaySlipManagement.UI.Controllers
             }
             leaveRequests.LeavesCount = count;
             var response = await _apiServices.PostAsync<LeaveRequests>($"{_apiSettings.LeaveRequestsEndpoint}/CreateLeaveRequests", leaveRequests);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index1");
         }
     }
 }

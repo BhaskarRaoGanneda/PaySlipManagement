@@ -17,6 +17,9 @@
             <a class="nav-link" id="ctc-breakdown-tab" data-bs-toggle="tab" href="#ctc-breakdown" role="tab" aria-controls="ctc-breakdown" aria-selected="false">CTC BreakDown</a>
         </li>
         <li class="nav-item" role="presentation">
+            <a class="nav-link" id="leaves-details-tab" data-bs-toggle="tab" href="#leaves-details" role="tab" aria-controls="leaves-details" aria-selected="false">Leaves</a>
+        </li>
+        <li class="nav-item" role="presentation">
             <a class="nav-link" id="apply-leave-tab" data-bs-toggle="tab" href="#apply-leave" role="tab" aria-controls="apply-leave" aria-selected="false">Apply Leave</a>
         </li>
     </ul>
@@ -88,6 +91,52 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Leaves Details Tab -->
+        <div class="tab-pane fade" id="leaves-details" role="tabpanel" aria-labelledby="leaves-details-tab">
+            @*<h2 class="text-secondary mb-2">Leave Info - @Model.Employee.Emp_Code</h2>*@
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-secondary text-white">
+                    <h5>Leave Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Total Leaves -->
+                        <div class="col-md-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5>Total Leaves</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>@Model.Leaves.TotalLeaves</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Leave Balance -->
+                        <div class="col-md-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5>Leave Balance</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>@Model.Leaves.LeavesAvailable</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Leaves Used -->
+                        <div class="col-md-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5>Leaves Used</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>@Model.Leaves.LeavesUsed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End row -->
+                </div> <!-- End card-body -->
+            </div> <!-- End card -->
         </div>
         <!-- Apply Leave Tab-->
         <div class="tab-pane fade" id="apply-leave" role="tabpanel" aria-labelledby="apply-leave-tab">

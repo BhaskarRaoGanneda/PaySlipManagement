@@ -1,0 +1,42 @@
+﻿@model List<LeaveRequestsViewModel>
+@{
+    ViewData["Title"] = "Leave Requests";
+}
+<div class="mt-2">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <p>List of Leave Requests</p>
+        </div>
+    </div>
+</div>
+<table class="table table-striped table-bordered">
+    <thead class="thead-light">
+        <tr class="bg-secondary text-white">
+            <th>Id</th>
+            <th>Employee Code</th>
+            <th>Leave Type</th>
+            <th>Reason</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Leaves Count</th>
+            <th>Approval Person</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Id</td>
+                <td>@request.Emp_Code</td>
+                <td>@request.LeaveType</td>
+                <td>@request.Reason</td>
+                <td>@request.FromDate</td>
+                <td>@request.ToDate</td>
+                <td>@request.LeavesCount</td>
+                <td>@request.ApprovalPerson</td>
+                <td>@request.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
