@@ -25,7 +25,6 @@
             <th>Leaves Count</th>
             <th>Approval Person</th>
             <th>Status</th>
-            <th>Leave Balance</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -42,7 +41,6 @@
                 <td>@request.LeavesCount</td>
                 <td>@request.ApprovalPerson</td>
                 <td>@request.Status</td>
-                <td>@request.LeaveBalance</td>
                 <td>
                     @* <div class="d-flex justify-content-md-evenly">
                         <a asp-action="Edit" asp-route-id="@request.Id" class="btn btn-primary btn-sm mr-2">
@@ -101,7 +99,7 @@
                             error: function (error) {
                                 alert('An error occurred while canceling the request.');
                             }
-                        });
+                        };
                     }
                 }
             </script>

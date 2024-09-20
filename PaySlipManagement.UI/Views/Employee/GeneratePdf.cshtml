@@ -92,42 +92,57 @@
         <!-- Apply Leave Tab-->
         <div class="tab-pane fade" id="apply-leave" role="tabpanel" aria-labelledby="apply-leave-tab">
             <h4 class="text-secondary mb-2">Apply Leave</h4>
-            <div class="form-group"> 
-                <p><strong>Employee:</strong> @Model.Employee.Emp_Code</p>
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.LeaveRequest.LeaveBalance">Leave Balance</label>
-                <input asp-for="@Model.LeaveRequest.LeaveBalance" class="form-control" readonly />
-            </div>
-            <div class="form-group">
-                <label for="leaveType">Leave Type:</label>
-                <select id="leaveType" class="form-control">
-                    <option value=" ">Select Leave Type</option>
-                    <option value="Casual">Casual</option>
-                    <option value="Sick">Sick</option>
-                    <option value="Paternity">Paternity</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="fromDate">From:</label>
-                <input type="date" id="fromDate" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="toDate">To:</label>
-                <input type="date" id="toDate" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="totalDays">Total Days:</label>
-                <input type="text" id="totalDays" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="reason">Reason:</label>
-                <textarea id="reason" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn-btn-primary">Submit Request</button>
-            </div>
+            <form asp-action="ApplyLeave" asp-controller="LeaveRequests" method="post">
+                <div class="form-group">
+                    <p><strong>Employee:</strong> @Model.Employee.Emp_Code</p>
+                </div>
+                <div class="form-group">
+                    <label for="leaveType">Leave Type:</label>
+                    <select id="leaveType" name="LeaveType" class="form-control">
+                        <option value=" ">Select Leave Type</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Sick">Sick</option>
+                        <option value="Paternity">Paternity</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fromDate">From:</label>
+                    <input type="date" id="fromDate" name="FromDate" class="form-control" onchange="calculateTotalDays()" />
+                </div>
+                <div class="form-group">
+                    <label for="toDate">To:</label>
+                    <input type="date" id="toDate" name="ToDate" class="form-control" onchange="calculateTotalDays()" />
+                </div>
+                <div class="form-group">
+                    <label for="totalDays">Total Days:</label>
+                    <input type="text" id="totalDays" name="TotalDays" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="reason">Reason:</label>
+                    <textarea id="reason" name="Reason" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reason">Approval Person:</label>
+                    <input id="Approval" name="Approval" class="form-control" value="Admin" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn-btn-primary">Submit Request</button>
+                </div>
+            </form>
         </div>
+
+        <script>
+            function calculateTotalDays() {
+                var fromDate = document.getElementById("fromDate").value;
+                var toDate = document.getElementById("toDate").value;
+                var fromDateParts = fromDate.split("-");
+                var toDateParts = toDate.split("-");
+                var fromDateDate = new Date(fromDateParts[0], fromDateParts[1] - 1, fromDateParts[2]);
+                var toDateDate = new Date(toDateParts[0], toDateParts[1] - 1, toDateParts[2]);
+                var totalDays = Math.round((toDateDate - fromDateDate) / (1000 * 3600 * 24)) + 1;
+                document.getElementById("totalDays").value = totalDays;
+            }
+        </script>
     </div>
 </div>
 
@@ -156,5 +171,52 @@
 
     .form-group {
         margin-bottom: 15px;
+    }
+
+    #apply-leave {
+        max-width: 500px; /* adjust the width as needed */
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9; /* light gray background */
+        border: 1px solid #ddd; /* light gray border */
+        border-radius: 10px; /* rounded corners */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    }
+
+    #apply-leave h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #337ab7; /* blue color for header */
+    }
+
+    #apply-leave .form-group {
+            margin-bottom: 10px;
+    }
+
+    #apply-leave label {
+            font-size: 14px;
+            font-weight: normal;
+            color: #666; /* dark gray color for labels */
+    }
+
+    #apply-leave .form-control {
+            font-size: 14px;
+            padding: 5px;
+            border: 1px solid #ccc; /* light gray border */
+            border-radius: 5px; /* rounded corners */
+            width: 100%;
+    }
+
+    #apply-leave button[type="submit"] {
+            background-color: #4CAF50; /* green color for submit button */
+            color: #fff; /* white text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px; /* rounded corners */
+            cursor: pointer;
+    }
+
+    #apply-leave button[type="submit"]:hover {
+            background-color: #3e8e41; /* darker green color on hover */
     }
 </style>
