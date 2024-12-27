@@ -26,88 +26,124 @@
 </style>
 
 <h2 class="text-center text-primary mb-4">Upload Employee Documents</h2>
- 
-<div class="card mx-auto shadow p-4" style="max-width: 600px; border-radius: 8px;">
-    <div class="card-body">
+<div class="mb-4 card mx-auto shadow p-4" style="max-width: 1300px; border-radius: 8px; height: 700px; overflow-y: auto; margin: 20px auto; padding: 20px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+    <div class="mb-4 card-body">
         <form asp-action="Create" enctype="multipart/form-data" method="post">
-
-            <!-- Document Uploads -->
+            @* <!-- Employee Code -->
             <div class="form-group mb-4">
-                <div class="mb-3">
-                    <label for="file10th" class="form-label">10th Certificate</label>
-                    <input type="file" name="files" id="file10th" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="10th Certificate" />
-                </div>
-                <div class="mb-3">
-                    <label for="fileIntermediate" class="form-label">Intermediate/Diploma Certificate</label>
-                    <input type="file" name="files" id="fileIntermediate" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Intermediate/Diploma Certificate" />
-                </div>
-                <div class="mb-3">
-                    <label for="fileGraduation" class="form-label">Graduation Certificate</label>
-                    <input type="file" name="files" id="fileGraduation" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Graduation Certificate" />
-                </div>
-                <div class="mb-3">
-                    <label for="filePostGraduation" class="form-label">Post Graduation Certificate</label>
-                    <input type="file" name="files" id="filePostGraduation" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Post Graduation Certificate" />
-                </div>
-                <div class="mb-3">
-                    <label for="fileAadhar" class="form-label">Aadhar Card</label>
-                    <input type="file" name="files" id="fileAadhar" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Aadhar Card" />
-                </div>
-                <div class="mb-3">
-                    <label for="filePAN" class="form-label">PAN Card</label>
-                    <input type="file" name="files" id="filePAN" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="PAN Card" />
-                </div>
-                <div class="mb-3">
-                    <label for="filePassport" class="form-label">Passport</label>
-                    <input type="file" name="files" id="filePassport" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Passport" />
-                </div>
-                <div class="mb-3">
-                    <label for="fileRelieving" class="form-label">Relieving Letter</label>
-                    <input type="file" name="files" id="fileRelieving" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Relieving Letter" />
-                </div>
-                <div class="mb-3">
-                    <label for="filePaySlips" class="form-label">PaySlips</label>
-                    <input type="file" name="files" id="filePaySlips" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="PaySlips" />
-                </div>
-                <div class="mb-3">
-                    <label for="fileOffer" class="form-label">Offer Letter</label>
-                    <input type="file" name="files" id="fileOffer" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Offer Letter" />
-                </div>
-                <div class="mb-3">
-                    <label for="fileResignation" class="form-label">Resignation Email</label>
-                    <input type="file" name="files" id="fileResignation" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Resignation Email" />
-                </div>
-                <div class="mb-3">
-                    <label for="fileForm16" class="form-label">Form-16</label>
-                    <input type="file" name="files" id="fileForm16" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Form-16" />
-                </div>
-                <div class="mb-3">
-                    <label for=" fileResume" class="form-label">Resume</label>
-                    <input type="file" name="files" id="fileResume" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Resume" />
-                </div>
-                <div class="mb-3">
-                    <label for="fileUAN" class="form-label">Latest UAN Membership Certificate</label>
-                    <input type="file" name="files" id="fileUAN" class="form-control" />
-                    <input type="hidden" name="documentTypes" value="Latest UAN Membership Certificate" />
-                </div>
+                <label for="empCode" class="form-label font-weight-bold" style="color:#206A5D; font-weight:bold; font-size: 20px;">Employee Code</label>
+                <input type="text" name="empCode" id="empCode" class="form-control" placeholder="Enter Employee Code" required />
             </div>
+ *@
+           <!-- Document Upload Section -->
+            <fieldset class="mb-4">
+                <!-- Education Documents -->
+                <fieldset class="mb-4">
+                    <legend class="section-heading">Education Documents</legend>
+                    <div class="row row-cols-1 row-cols-md-3 g-3">
+                        <div class="col">
+                            <label for="file10th" class="form-label">10th Certificate</label>
+                            <input type="file" name="files" id="file10th" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="10th Certificate" />
+                        </div>
+                        <div class="col">
+                            <label for="fileIntermediate" class="form-label">Intermediate/Diploma Certificate</label>
+                            <input type="file" name="files" id="fileIntermediate" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Intermediate/Diploma Certificate" />
+                        </div>
+                        <div class="col">
+                            <label for="fileGraduation" class="form-label">Graduation Certificate</label>
+                            <input type="file" name="files" id="fileGraduation" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Graduation Certificate" />
+                        </div>
+                        <div class="col">
+                            <label for="filePostGraduation" class="form-label">Post Graduation Certificate</label>
+                            <input type="file" name="files" id="filePostGraduation" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Post Graduation Certificate" />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Personal Documents -->
+                <fieldset class="mb-4">
+                    <legend class="section-heading">Personal Documents</legend>
+                    <div class="row row-cols-1 row-cols-md-3 g-3">
+                        <div class="col">
+                            <label for="fileAadhar" class="form-label">Aadhar Card</label>
+                            <input type="file" name="files" id="fileAadhar" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Aadhar Card" />
+                        </div>
+                        <div class="col">
+                            <label for="filePAN" class="form-label">PAN Card</label>
+                            <input type="file" name="files" id="filePAN" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="PAN Card" />
+                        </div>
+                        <div class="col">
+                            <label for="filePassportPhoto" class="form-label">Passport Size Photo</label>
+                            <input type="file" name="files" id="filePassportPhoto" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Passport Size Photo" />
+                        </div>
+                        <div class="col">
+                            <label for="fileVoter" class="form-label">Voter Id (Optional)</label>
+                            <input type="file" name="files" id="fileVoter" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Voter Id (Optional)" />
+                        </div>
+                        <div class="col">
+                            <label for="filePassport" class="form-label">Passport (Optional)</label>
+                            <input type="file" name="files" id="filePassport" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Passport (Optional)" />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Employee Documents -->
+                <fieldset class="mb-4">
+                    <legend class="section-heading">Employee Documents</legend>
+                    <div class="row row-cols-1 row-cols-md-3 g-3">
+                        <div class="col">
+                            <label for="fileRelieving" class="form-label">Relieving Letter</label>
+                            <input type="file" name="files" id="fileRelieving" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Relieving Letter" />
+                        </div>
+                        <div class="col">
+                            <label for="filePaySlips" class="form-label">Pay Slips</label>
+                            <input type="file" name="files" id="filePaySlips" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Pay Slips" />
+                        </div>
+                        <div class="col">
+                            <label for="fileOffer" class="form-label">Offer Letter</label>
+                            <input type="file" name="files" id="fileOffer" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Offer Letter" />
+                        </div>
+                        <div class="col">
+                            <label for="fileResignation" class="form-label">Resignation Email</label>
+                            <input type="file" name="files" id="fileResignation" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Resignation Email" />
+                        </div>
+                        <div class="col">
+                            <label for="fileForm16" class="form-label">Form-16</label>
+                            <input type="file" name="files" id="fileForm16" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Form-16" />
+                        </div>
+                        <div class="col">
+                            <label for="fileResume" class="form-label">Resume</label>
+                            <input type="file" name="files" id="fileResume" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Resume" />
+                        </div>
+                        <div class="col">
+                            <label for="fileUAN" class="form-label">Latest UAN Membership Certificate</label>
+                            <input type="file" name="files" id="fileUAN" class="form-control" />
+                            <input type="hidden" name="documentTypes" value="Latest UAN Membership Certificate" />
+                        </div>
+                    </div>
+                </fieldset>
+            </fieldset>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary btn-block">Upload Documents</button>
-            <button type="button" class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Index", "Employee")'">Back to List</button>
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-primary">Upload Documents</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Index", "Employee")'">Back to List</button>
+            </div>
         </form>
     </div>
 </div>

@@ -5,95 +5,148 @@
 <h1 class="form-heading">Insert CTC Details</h1>
 <hr class="custom-hr" />
 
-<div class="container form-container">
+<div class="container form-container" style="max-width: 1200px; border-radius: 8px; height: 600px; overflow-y: auto; margin: 20px auto; padding: 20px;">
     <form asp-action="Create">
-        <div class="form-group">
-            <label asp-for="Emp_Code" class="form-label"></label>
-            <input asp-for="Emp_Code" class="form-control input-field" placeholder="Enter Employee Code" />
+        <!-- Row 1 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Emp_Code" class="form-label"></label>
+                    <input asp-for="Emp_Code" class="form-control input-field" placeholder="Enter Employee Code" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="EarnedBasic" class="form-label"></label>
+                    <input asp-for="EarnedBasic" class="form-control input-field" placeholder="Enter Earned Basic" />
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="EarnedBasic" class="form-label"></label>
-            <input asp-for="EarnedBasic" class="form-control input-field" placeholder="Enter Earned Basic" />
+        <!-- Row 2 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="HRA" class="form-label"></label>
+                    <input asp-for="HRA" class="form-control input-field" placeholder="Enter HRA" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="SpecialAllowance" class="form-label"></label>
+                    <input asp-for="SpecialAllowance" class="form-control input-field" placeholder="Enter Special Allowance" />
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="HRA" class="form-label"></label>
-            <input asp-for="HRA" class="form-control input-field" placeholder="Enter HRA" />
+        <!-- Row 3 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PFEmployeeShare" class="form-label"></label>
+                    <input asp-for="PFEmployeeShare" class="form-control input-field" placeholder="Enter PF Employee Share" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="ProfessionalTax" class="form-label"></label>
+                    <input asp-for="ProfessionalTax" class="form-control input-field" placeholder="Enter Professional Tax" />
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="SpecialAllowance" class="form-label"></label>
-            <input asp-for="SpecialAllowance" class="form-control input-field" placeholder="Enter Special Allowance" />
+        <!-- Row 4 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TDS" class="form-label"></label>
+                    <input asp-for="TDS" class="form-control input-field" placeholder="Enter TDS" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="AnnualCTC" class="form-label"></label>
+                    <input asp-for="AnnualCTC" class="form-control input-field" placeholder="Enter Annual CTC" />
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="PFEmployeeShare" class="form-label"></label>
-            <input asp-for="PFEmployeeShare" class="form-control input-field" placeholder="Enter PF Employee Share" />
+        <!-- Row 5 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="CTCMonth" class="form-label"></label>
+                    <input asp-for="CTCMonth" class="form-control input-field" placeholder="Enter CTC Month" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PFEmployerShare" class="form-label"></label>
+                    <input asp-for="PFEmployerShare" class="form-control input-field" placeholder="Enter PF Employer Share" />
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="ProfessionalTax" class="form-label"></label>
-            <input asp-for="ProfessionalTax" class="form-control input-field" placeholder="Enter Professional Tax" />
+        <!-- Row 6 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PFEmployerShareAnnual" class="form-label"></label>
+                    <input asp-for="PFEmployerShareAnnual" class="form-control input-field" placeholder="Enter PF Employer Share Annual" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="AnnualGrossPay" class="form-label"></label>
+                    <input asp-for="AnnualGrossPay" class="form-control input-field" placeholder="Enter Annual Gross Pay" />
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="TDS" class="form-label"></label>
-            <input asp-for="TDS" class="form-control input-field" placeholder="Enter TDS" />
+        <!-- Row 7 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="MonthGrossPay" class="form-label"></label>
+                    <input asp-for="MonthGrossPay" class="form-control input-field" placeholder="Enter Month Gross Pay" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="OtherAdditions" class="form-label"></label>
+                    <input asp-for="OtherAdditions" class="form-control input-field" placeholder="Enter Other Additions" />
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="AnnualCTC" class="form-label"></label>
-            <input asp-for="AnnualCTC" class="form-control input-field" placeholder="Enter Annual CTC" />
+        <!-- Row 8 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="OtherDeductions" class="form-label"></label>
+                    <input asp-for="OtherDeductions" class="form-control input-field" placeholder="Enter Other Deductions" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TotalDeductions" class="form-label"></label>
+                    <input asp-for="TotalDeductions" class="form-control input-field" placeholder="Enter Total Deductions" />
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="CTCMonth" class="form-label"></label>
-            <input asp-for="CTCMonth" class="form-control input-field" placeholder="Enter CTC Month" />
+        <!-- Row 9 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="NetPay" class="form-label"></label>
+                    <input asp-for="NetPay" class="form-control input-field" placeholder="Enter Net Pay" />
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="PFEmployerShare" class="form-label"></label>
-            <input asp-for="PFEmployerShare" class="form-control input-field" placeholder="Enter PF Employer Share" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="PFEmployerShareAnnual" class="form-label"></label>
-            <input asp-for="PFEmployerShareAnnual" class="form-control input-field" placeholder="Enter PF Employer Share Annual" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="AnnualGrossPay" class="form-label"></label>
-            <input asp-for="AnnualGrossPay" class="form-control input-field" placeholder="Enter Annual Gross Pay" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="MonthGrossPay" class="form-label"></label>
-            <input asp-for="MonthGrossPay" class="form-control input-field" placeholder="Enter Month Gross Pay" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="OtherAdditions" class="form-label"></label>
-            <input asp-for="OtherAdditions" class="form-control input-field" placeholder="Enter Other Additions" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="OtherDeductions" class="form-label"></label>
-            <input asp-for="OtherDeductions" class="form-control input-field" placeholder="Enter Other Deductions" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="TotalDeductions" class="form-label"></label>
-            <input asp-for="TotalDeductions" class="form-control input-field" placeholder="Enter Total Deductions" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="NetPay" class="form-label"></label>
-            <input asp-for="NetPay" class="form-control input-field" placeholder="Enter Net Pay" />
-        </div>
-
+        <!-- Submit Button -->
         <hr class="custom-hr" />
-
         <div class="form-group mt-3">
             <div class="d-flex justify-content-between">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -102,6 +155,7 @@
         </div>
     </form>
 </div>
+
 
 <style>
     .form-heading {

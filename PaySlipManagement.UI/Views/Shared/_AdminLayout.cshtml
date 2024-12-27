@@ -248,6 +248,8 @@
                     {
                         <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Employee" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"
                            asp-area="" asp-controller="Employee" asp-action="Index">Employee</a>
+                        <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "EmployeeTasks" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"
+                           asp-area="" asp-controller="EmployeeTasks" asp-action="Index">Employee Tasks</a>
                         <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "AccountDetails" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"
                            asp-area="" asp-controller="AccountDetails" asp-action="Index">Account</a>
                         <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Department" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"

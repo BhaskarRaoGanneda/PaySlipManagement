@@ -9,6 +9,7 @@ namespace PaySlipManagement.UI.Models
         public string DepartmentEndpoint { get; set; }
         public string DocumentEndpoint { get; set; }
         public string EmployeeEndpoint { get; set; }
+        public string EmployeeTasksEndpoint { get; set; }
         public string RolesEndpoint { get; set; }
         public string SalaryEndpoint { get; set; }
         public string UserEndpoint { get; set; }

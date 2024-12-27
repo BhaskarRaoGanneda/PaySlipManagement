@@ -59,6 +59,7 @@ namespace PaySlipManagement.UI.Controllers
         {
             if (file == null || file.Length == 0)
                 return Json(new { success = false, message = "File is empty" });
+
             ExcelPackage.LicenseContext = LicenseContext.Commercial;
 
             var payslipDetailsList = new List<PayslipDetailsViewModel>();
@@ -70,29 +71,52 @@ namespace PaySlipManagement.UI.Controllers
                 {
                     var worksheet = package.Workbook.Worksheets[0];
                     var rowCount = worksheet.Dimension.Rows;
+                    var columnCount = worksheet.Dimension.Columns;
 
+                    // Get header mappings dynamically
+                    var headers = new Dictionary<string, int>();
+                    for (int col = 1; col <= columnCount; col++)
+                    {
+                        var header = worksheet.Cells[1, col].Value?.ToString()?.Trim();
+                        if (!string.IsNullOrEmpty(header))
+                        {
+                            headers[header] = col; // Map header name to column index
+                        }
+                    }
+
+                    // Validate required headers
+                    var requiredHeaders = new[] { "Emp_Code", "DaysPaid", "AbsentDays", "NetPay", "PFEmployeeShare", "ProfessionalTax", "TDS" };
+                    foreach (var header in requiredHeaders)
+                    {
+                        if (!headers.ContainsKey(header))
+                        {
+                            return Json(new { success = false, message = $"Missing required header: {header}" });
+                        }
+                    }
+
+                    // Process rows starting from the 3rd row
                     for (int row = 3; row <= rowCount; row++)
                     {
-                        decimal.TryParse(worksheet.Cells[row, 15].Value?.ToString(), out var netPay);
+                        decimal.TryParse(worksheet.Cells[row, headers["NetPay"]].Value?.ToString(), out var netPay);
                         decimal earnedBasic = netPay * 0.4m;
                         decimal hra = earnedBasic * 0.4m;
                         decimal specialAllowance = netPay - earnedBasic - hra;
-                        int.TryParse(worksheet.Cells[row, 8].Value?.ToString(), out var daysPaid);
-                        int.TryParse(worksheet.Cells[row, 6].Value?.ToString(), out var absentDays);
-                        decimal lossofpay = Math.Round((netPay / daysPaid) * absentDays, 2);
+                        int.TryParse(worksheet.Cells[row, headers["DaysPaid"]].Value?.ToString(), out var daysPaid);
+                        int.TryParse(worksheet.Cells[row, headers["AbsentDays"]].Value?.ToString(), out var absentDays);
+                        decimal lossofpay = daysPaid != 0 ? Math.Round((netPay / daysPaid) * absentDays, 2) : 0;
 
                         PayslipDetailsViewModel rowData = new PayslipDetailsViewModel
                         {
-                            Emp_Code = worksheet.Cells[row, 3].Value?.ToString(),
+                            Emp_Code = worksheet.Cells[row, headers["Emp_Code"]].Value?.ToString(),
                             PaySlipForMonth = DateTime.Now.ToString("MMMM-yyyy"),
                             DaysPaid = daysPaid,
                             AbsentDays = absentDays,
                             EarnedBasic = earnedBasic,
                             HRA = hra,
                             SpecialAllowance = specialAllowance,
-                            PFEmployeeShare = decimal.TryParse(worksheet.Cells[row, 12].Value?.ToString(), out var pfEmployeeShare) ? pfEmployeeShare : 0,
-                            ProfessionalTax = decimal.TryParse(worksheet.Cells[row, 10].Value?.ToString(), out var professionalTax) ? professionalTax : 0,
-                            TDS = decimal.TryParse(worksheet.Cells[row, 11].Value?.ToString(), out var tds) ? tds : 0,
+                            PFEmployeeShare = decimal.TryParse(worksheet.Cells[row, headers["PFEmployeeShare"]].Value?.ToString(), out var pfEmployeeShare) ? pfEmployeeShare : 0,
+                            ProfessionalTax = decimal.TryParse(worksheet.Cells[row, headers["ProfessionalTax"]].Value?.ToString(), out var professionalTax) ? professionalTax : 0,
+                            TDS = decimal.TryParse(worksheet.Cells[row, headers["TDS"]].Value?.ToString(), out var tds) ? tds : 0,
                             EarningTotal = netPay,
                             TotalDeductions = pfEmployeeShare + professionalTax + tds,
                             NetPay = netPay - lossofpay
@@ -102,7 +126,7 @@ namespace PaySlipManagement.UI.Controllers
                 }
             }
 
-            // Make a POST request to the Web API /api/PayslipDetails/CreatePayslipDetails
+            // Post data to API
             var response = await _apiServices.PostAsync($"{_apiSettings.PayslipDetailsEndpoint}/CreatePayslipDetails", payslipDetailsList);
 
             if (!string.IsNullOrEmpty(response) && response == "Imported Successfully" || response == "true")
@@ -119,6 +143,7 @@ namespace PaySlipManagement.UI.Controllers
             }
             return View("UploadPayslip");
         }
+
         // GET: Payslip/Details/5
         [HttpGet]
         public async Task<IActionResult> Details(string id)

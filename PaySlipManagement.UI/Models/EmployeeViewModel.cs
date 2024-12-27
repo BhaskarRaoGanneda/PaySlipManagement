@@ -106,5 +106,8 @@ namespace PaySlipManagement.UI.Models
         public HolidayImagePDFViewModel Holiday {  get; set; }
         public LeavesViewModel Leaves { get; set; } = new LeavesViewModel();
         public IEnumerable<LeaveRequestsViewModel>? LeaveRequests { get; set; }
+        //public IEnumerable<EmployeeTasksViewModel>? EmployeeTasks { get; set; }
+        
+
     }
 }

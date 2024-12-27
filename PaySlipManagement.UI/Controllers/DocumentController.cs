@@ -45,11 +45,19 @@ namespace PaySlipManagement.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> DownloadDocument(string empCode, string documentType)
         {
-            empCode = TempData["Emp_Code"] as string; // Fetch the Emp_Code
-            var doc = await _apiServices.GetAsync<DocumentViewModel>($"{_apiSettings.DocumentEndpoint}/GetDocumentsByIdAsync/{empCode}/{documentType}");
-            if (doc == null)
+            if (string.IsNullOrEmpty(empCode))
             {
-                return NotFound();
+                empCode = TempData["Emp_Code"] as string;
+                TempData.Keep("Emp_Code"); // Keep TempData for further requests
+            }
+            documentType = documentType?.Trim().ToLower(); // Normalize document type
+                                                           // Fetch document details from the API
+            var url = $"{_apiSettings.DocumentEndpoint}/GetDocumentsByIdAsync/{empCode}/{documentType}";
+            var doc = await _apiServices.GetAsync<DocumentViewModel>(url);
+
+            if (doc == null || doc.FileData == null)
+            {
+                return NotFound("Document not found.");
             }
 
             return File(doc.FileData, "application/octet-stream", doc.FileName);
@@ -58,23 +66,31 @@ namespace PaySlipManagement.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> ViewDocument(string empCode, string documentType)
         {
-            empCode = TempData["Emp_Code"] as string; // Fetch the Emp_Code
-            
-            var doc = await _apiServices.GetAsync<DocumentViewModel>($"{_apiSettings.DocumentEndpoint}/GetDocumentsByIdAsync/{empCode}/{documentType}");
-            if (doc == null)
+            if (string.IsNullOrEmpty(empCode))
             {
-                return NotFound();
+                empCode = TempData["Emp_Code"] as string;
+                TempData.Keep("Emp_Code"); // Keep TempData for further requests
             }
+            documentType = documentType?.Trim().ToLower(); // Normalize document type
+                                                           // Fetch document details from the API
+            var url = $"{_apiSettings.DocumentEndpoint}/GetDocumentsByIdAsync/{empCode}/{documentType}";
+            var doc = await _apiServices.GetAsync<DocumentViewModel>(url);
+
+            if (doc == null || doc.FileData == null)
+            {
+                return NotFound("Document not found.");
+            }
+
             // Determine the MIME type based on the document type
             string mimeType;
-            switch (documentType.ToLower())
+            switch (Path.GetExtension(doc.FileName)?.ToLower())
             {
-                case "passport size photo":
-                case "aadhar card":
-                case "PAN Card":
-                case "voter id":
-                case "passport":
-                    mimeType = "image/jpeg"; // or "image/png" depending on the image type
+                case ".jpg":
+                case ".jpeg":
+                    mimeType = "image/jpeg";
+                    break;
+                case ".png":
+                    mimeType = "image/png";
                     break;
                 default:
                     mimeType = "application/pdf";

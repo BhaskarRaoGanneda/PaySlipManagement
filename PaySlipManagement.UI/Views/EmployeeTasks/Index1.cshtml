@@ -1,0 +1,53 @@
+﻿@model IEnumerable<EmployeeTasksViewModel>
+
+@{
+    ViewData["Title"] = "Employee Tasks";
+}
+
+
+<div class="card mt-4 shadow-sm">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">List of Employee Tasks</h4>
+        <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("GeneratePdf", "Employee", new { tab = "Tasks" })'">
+            Back to Employee Dashboard
+        </button>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-hover table-striped mb-0">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Employee Code</th>
+                    <th>Task From</th>
+                    <th>Task To</th>
+                    <th>Task Description</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var task in Model)
+                    {
+                        <tr>
+                            <td>@task.Id</td>
+                            <td>@task.Emp_Code</td>
+                            <td>@task.TaskFrom.ToString("hh\\:mm")</td> <!-- Format as HH:mm -->
+                            <td>@task.TaskTo.ToString("hh\\:mm")</td> <!-- Format as HH:mm -->
+                            <td>@task.TaskDescription</td>
+                            <td>@task.Duration</td>
+                            <td>@task.Status</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">No employee tasks available.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
